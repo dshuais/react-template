@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-03-29 17:53:41
+ * @LastEditTime: 2024-03-29 18:34:14
  * @description: 心平气和
  */
 import { useState } from 'react'
@@ -17,7 +17,7 @@ function App() {
   const navigate = useNavigate()
 
   function handleJumpLogin() {
-    navigate('/login')
+    navigate('/login/7788?a=555', { state: { b: 666 } })
   }
 
   return (

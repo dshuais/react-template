@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:17:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-03-29 18:11:53
+ * @LastEditTime: 2024-03-29 18:30:06
  * @description: 路由表
  */
 import { lazy } from 'react'
@@ -26,7 +26,7 @@ const routes: RouteObject[] = [
     // ]
   },
   {
-    path: '/login',
+    path: '/login/:id',
     // element: <Login />
     async lazy() {
       let { default: Login } = await import('@/pages/login')
