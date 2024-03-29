@@ -1,7 +1,14 @@
+/*
+ * @Author: dushuai
+ * @Date: 2024-03-29 16:10:20
+ * @LastEditors: dushuai
+ * @LastEditTime: 2024-03-29 16:25:03
+ * @description: 心平气和
+ */
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import './index.css'
 
 function App() {
   const [count, setCount] = useState(0)
