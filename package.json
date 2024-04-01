@@ -1,5 +1,5 @@
 {
-  "name": "react-template",
+  "name": "react",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,7 @@
     "prod": "tsc && vite build"
   },
   "dependencies": {
+    "antd": "^5.16.0",
     "axios": "^1.6.8",
     "qs": "^6.12.0",
     "react": "^18.2.0",

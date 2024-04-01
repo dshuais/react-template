@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-01 16:39:16
+ * @LastEditTime: 2024-04-01 17:28:51
  * @description: Home
  */
 import { useEffect, useState } from 'react'
@@ -12,6 +12,7 @@ import viteLogo from '/vite.svg'
 import styles from './index.module.css'
 import { useSnapshot } from 'valtio'
 import { appStore, appActions, setStore, setActions } from '@/store'
+import { Button, message } from 'antd'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,12 +31,24 @@ function App() {
     // console.log(appStore);
   })
 
+  const [messageApi, contextHolder] = message.useMessage();
+
   return (
     <div className={styles.root}>
+      <div>contextHolder: {contextHolder}</div>
+      <Button type="primary" onClick={() => {
+        messageApi.success('success'), console.log(contextHolder)
+        // message.open({ content: 'success' })
+      }}>
+        message
+      </Button>
       <div>token: {token}</div>
-      <button onClick={() => appActions.setToken(token + '123')}>
+      <Button type="primary" onClick={() => appActions.setToken(token + '123')}>
         修改token
-      </button>
+      </Button>
+      <Button type="primary" danger onClick={() => appActions.reset()}>
+        重置
+      </Button>
       <div>theme: {theme}</div>
       <button onClick={() => setActions.setTheme('dark')}>
         theme

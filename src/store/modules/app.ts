@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-01 15:35:04
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-01 16:49:04
+ * @LastEditTime: 2024-04-01 17:15:16
  * @description: App基础store
  */
 import { proxy, subscribe } from 'valtio'
@@ -33,6 +33,19 @@ export const appStore = proxy(
 export const appActions = {
   setToken(token: string) {
     appStore.token = token
+  },
+  resetToken() {
+    appStore.token = ''
+  },
+
+  /**
+   * 重置整个store
+   */
+  reset() {
+    const app = getAppStore()
+    Object.keys(app).forEach((key) => {
+      appStore[key] = app[key as keyof AppStore]
+    })
   }
 }
 
