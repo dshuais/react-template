@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-03-29 22:33:18
+ * @LastEditTime: 2024-04-01 09:50:17
  * @description: Home
  */
 import { useState } from 'react'
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className={styles.root}>
-      <div>
+      <div className="flex justify-center items-center">
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className={styles.logo} alt="Vite logo" />
         </a>
