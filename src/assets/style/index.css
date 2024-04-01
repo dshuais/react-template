@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/**
+* 设置默认滚动条样式
+*/
+::-webkit-input-placeholder {
+  color: #afbdcc;
+}
+:-moz-placeholder {
+  color: #afbdcc;
+}
+::-moz-placeholder {
+  color: #afbdcc;
+}
+:-ms-input-placeholder {
+  color: #afbdcc;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: #f5f5f5;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-corner {
+  background-color: #f5f5f5;
+}
+::-webkit-resizer {
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
