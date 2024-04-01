@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-01 16:07:46
+ * @LastEditTime: 2024-04-01 16:39:16
  * @description: Home
  */
 import { useEffect, useState } from 'react'
@@ -11,7 +11,7 @@ import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
 import styles from './index.module.css'
 import { useSnapshot } from 'valtio'
-import { appStore, appActions } from '@/store'
+import { appStore, appActions, setStore, setActions } from '@/store'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,17 +23,22 @@ function App() {
   }
 
   const { token } = useSnapshot(appStore)
+  const { theme } = useSnapshot(setStore)
   // const actions = useSnapshot(appActions)
 
   useEffect(() => {
-    console.log(appStore);
+    // console.log(appStore);
   })
 
   return (
     <div className={styles.root}>
       <div>token: {token}</div>
-      <button onClick={() => appActions.setToken('123')}>
+      <button onClick={() => appActions.setToken(token + '123')}>
         修改token
+      </button>
+      <div>theme: {theme}</div>
+      <button onClick={() => setActions.setTheme('dark')}>
+        theme
       </button>
       <div className="flex justify-center items-center">
         <a href="https://vitejs.dev" target="_blank">

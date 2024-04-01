@@ -2,10 +2,11 @@
  * @Author: dushuai
  * @Date: 2024-04-01 15:35:04
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-01 15:59:45
+ * @LastEditTime: 2024-04-01 16:49:04
  * @description: App基础store
  */
 import { proxy, subscribe } from 'valtio'
+import { devtools } from 'valtio/utils'
 
 type AppStore = {
   token: string
@@ -42,3 +43,8 @@ export const appActions = {
 subscribe(appStore, () => {
   sessionStorage.setItem('app-store', JSON.stringify(appStore))
 })
+
+/**
+ * 配置使用devtools 插件
+ */
+devtools(appStore, { name: 'app store', enabled: true })
