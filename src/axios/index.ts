@@ -2,13 +2,15 @@
  * @Author: dushuai
  * @Date: 2023-03-14 17:53:45
  * @LastEditors: dushuai
- * @LastEditTime: 2024-03-29 17:02:25
+ * @LastEditTime: 2024-04-03 10:11:56
  * @description: axios
  */
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import qs from 'qs'
 import { cancelRequest } from './requestCancel'
 import ErrorCodeHandle from './requestCode'
+import { appStore } from '@/store'
+import { message } from 'antd'
 
 /** 不需要处理异常白名单 */
 const whiteList: string[] = ['/qiniu/upload/uptoken']
@@ -23,7 +25,8 @@ const service = axios.create({
 service.interceptors.request.use(
   (config: InternalAxiosRequestConfig<any>) => {
     // 添加token
-    const token = 'xxx'
+    const { token } = appStore
+
     if (token) {
       config.headers['token'] = token
     }
@@ -45,6 +48,9 @@ service.interceptors.response.use(
 
     cancelRequest.removePending(response.config) // 删除重复请求
 
+    /**
+     * 处理错误响应
+     */
     if (whiteList.some(e => e.match(url))) {
       console.log('接口通过白名单，不需要异常处理url:>> ', url)
     } else {
@@ -52,16 +58,24 @@ service.interceptors.response.use(
     }
 
     // console.log('响应拦截 response:>> ', response)
-    return response
+    if (response.data.code === 200) {
+      return response
+    } else {
+      console.error("响应异常:>> ", response);
+      return Promise.reject(response)
+    }
   },
   (err: AxiosError) => {
     /**
      * 将取消请求的错误捕获
      * 根据需要设置 因为需要对每个请求单独处理catch 所以隐藏取消请求的错误返回
      */
+    console.error("响应异常:>> ", err);
+
     if (err.code === 'ERR_CANCELED') {
       console.log('请求取消url:>> ', err.config?.url)
     } else {
+      message.error(err.message)
       return Promise.reject(err)
     }
   }
