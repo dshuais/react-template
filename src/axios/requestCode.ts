@@ -2,13 +2,13 @@
  * @Author: dushuai
  * @Date: 2023-04-03 14:33:53
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-03 10:12:45
+ * @LastEditTime: 2024-04-03 14:43:21
  * @description: 统一处理报错
  */
 import type { AxiosResponse } from "axios";
 import { appActions } from '@/store'
-import { useNavigate } from "react-router-dom"
 import { message } from 'antd'
+import router from '@/router'
 
 /** 不需要token的接口列表 */
 const noTokenUrl: string[] = ['app/main/getToken']
@@ -29,8 +29,7 @@ export default (response: AxiosResponse): void => {
     console.log('登陆失败err:>> ', url)
     // 清除token
     appActions.resetToken()
-    const navigate = useNavigate()
-    navigate('/login', { replace: true })
+    router.navigate('/login', { replace: true })
 
   } else if (to404Url.includes(code)) { // 跳降级页
     window.location.href = '/404'
