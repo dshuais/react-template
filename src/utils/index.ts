@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2023-03-21 16:52:49
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-01 10:03:22
+ * @LastEditTime: 2024-04-07 17:32:19
  * @description: 工具方法
  */
 
@@ -236,4 +236,29 @@ export const scrollPageTo = (scroll: number, id: string = 'app', duration: numbe
     }
   }
   requestAnimationFrame(step)
+}
+
+/**
+ * This is just a simple version of deep copy
+ * Has a lot of edge cases bug
+ * If you want to use a perfect deep copy, use lodash's _.cloneDeep
+ * @param {Object} source
+ * @returns {Object}
+ */
+export function deepClone<T>(source: T): T {
+  if (!source && typeof source !== 'object') {
+    throw new Error('error arguments deepClone')
+  }
+  const targetObj = (source!.constructor === Array ? [] : {}) as T
+
+  Object.keys(source!).forEach(keys => {
+    type K = keyof typeof source
+    if (source![keys as K] && typeof source![keys as K] === 'object') {
+      targetObj[keys as K] = deepClone(source![keys as K])
+    } else {
+      targetObj[keys as K] = source![keys as K]
+    }
+  })
+
+  return targetObj
 }

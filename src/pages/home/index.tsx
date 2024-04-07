@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-01 17:28:51
+ * @LastEditTime: 2024-04-07 17:41:09
  * @description: Home
  */
 import { useEffect, useState } from 'react'
@@ -20,7 +20,7 @@ function App() {
   const navigate = useNavigate()
 
   function handleJumpLogin() {
-    navigate('/login/7788?a=555', { state: { b: 666 } })
+    navigate('/login', { state: { b: 666 } })
   }
 
   const { token } = useSnapshot(appStore)

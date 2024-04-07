@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-01 15:35:04
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-01 17:15:16
+ * @LastEditTime: 2024-04-07 17:37:58
  * @description: App基础store
  */
 import { proxy, subscribe } from 'valtio'
@@ -17,7 +17,7 @@ type AppStore = {
  * @returns AppStore
  */
 const getAppStore = (): AppStore => ({
-  token: 'default'
+  token: ''
 })
 
 /**

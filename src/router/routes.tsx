@@ -2,37 +2,74 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:17:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-03-29 18:30:06
+ * @LastEditTime: 2024-04-07 17:38:46
  * @description: 路由表
  */
-import { lazy } from 'react'
+import { ComponentType, lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
+import { Route } from '@/store/modules/permission'
 
-const Home = lazy(() => import('@/pages/home'))
-// const Login = lazy(() => import('@/pages/login'))
-const ErrorElement = lazy(() => import('@/pages/error'))
+const BasicsLayout = lazy(() => import('@/layouts/basics'))
+// const Home = lazy(() => import('@/pages/home'))
+// const ErrorElement = lazy(() => import('@/pages/error'))
+
+type Module = {
+  [keys in string]: () => Promise<{ default: ComponentType<any>; }>
+}
+
+// 动态路由获取所有页面
+const modules = import.meta.glob('@/pages/*/index.tsx') as unknown as Module
 
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Home />,
-    errorElement: <ErrorElement />,
+    Component: BasicsLayout,
+    children: []
+    // element: <Home />,
+    // errorElement: <ErrorElement />,
     // 使用嵌套路由需要在 父页面元素内加上 <Outlet /> 组件
     // children: [
     //   {
-    //     path: 'child',
-    //     element: <div>child</div>
+    //     id: 'Home',
+    //     path: '/',
+    //     // element: <Home />
+    //     Component: lazy(modules['/src/pages/home/index.tsx'])
     //   }
-    // ]
+    // ],
+    // handle: {
+    //   title: 'Home'
+    // }
   },
   {
-    path: '/login/:id',
-    // element: <Login />
-    async lazy() {
-      let { default: Login } = await import('@/pages/login')
-      return { Component: Login }
-    }
+    path: '/login',
+    // async lazy() {
+    //   let { default: Login } = await import('@/pages/login')
+    //   return { Component: Login }
+    // }
+    // Component: lazy(() => import('@/pages/login'))
+    Component: lazy(modules['/src/pages/login/index.tsx'])
+  },
+  {
+    path: '*',
+    Component: lazy(modules['/src/pages/error/index.tsx'])
+    // element: <ErrorElement />,
+    // errorElement: <ErrorElement />
   }
 ]
 
 export default routes
+
+/**
+ * 动态配置路由
+ */
+export const dynamicRoutes: Route[] = [
+  {
+    id: 'Home',
+    path: '/',
+    component: 'home',
+    handle: {
+      title: '首页',
+      roles: ['admin', 'other']
+    }
+  }
+]
