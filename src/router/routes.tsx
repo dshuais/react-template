@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:17:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-07 17:38:46
+ * @LastEditTime: 2024-04-07 18:39:57
  * @description: 路由表
  */
 import { ComponentType, lazy } from 'react'
@@ -67,6 +67,15 @@ export const dynamicRoutes: Route[] = [
     id: 'Home',
     path: '/',
     component: 'home',
+    handle: {
+      title: '首页',
+      roles: ['admin', 'other']
+    }
+  },
+  {
+    id: 'Home2',
+    path: '/home2',
+    component: 'home2',
     handle: {
       title: '首页',
       roles: ['admin', 'other']

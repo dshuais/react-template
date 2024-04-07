@@ -3,7 +3,7 @@
 * @Author: dushuai
 * @Date: 2024-03-29 16:13:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-07 18:42:14
+ * @LastEditTime: 2024-04-07 18:39:04
 * @description: login
 */
 import { useLocation, useNavigate, useNavigation, useParams, useSearchParams } from "react-router-dom"
@@ -16,13 +16,7 @@ function Login() {
   const p = useParams()
   const location = useLocation()
   const navigation = useNavigation()
-  const navigate = useNavigate()
-
-  // console.log(p);
-
-  // console.log(location);
-
-  // console.log(navigation);
+  const navtivate = useNavigate()
 
   function handleSet() {
     setParams({
@@ -33,9 +27,9 @@ function Login() {
   const { theme } = useSnapshot(setStore)
 
   function handleLogin() {
-    appActions.setToken('test-tokentokentokentokentokentokentokentokentokentokentokentokentoken')
+    appActions.setToken('test-token')
     message.success('登陆成功')
-    navigate('/', { replace: true })
+    navtivate('/', { replace: true })
   }
 
   return (
@@ -51,7 +45,7 @@ function Login() {
         set
       </button>
       <br />
-      <button onClick={() => navigate('/')}>
+      <button onClick={() => navtivate('/')}>
         返回
       </button>
 
