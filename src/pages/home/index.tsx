@@ -2,10 +2,10 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-07 17:41:09
+ * @LastEditTime: 2024-04-08 10:41:41
  * @description: Home
  */
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -26,10 +26,6 @@ function App() {
   const { token } = useSnapshot(appStore)
   const { theme } = useSnapshot(setStore)
   // const actions = useSnapshot(appActions)
-
-  useEffect(() => {
-    // console.log(appStore);
-  })
 
   const [messageApi, contextHolder] = message.useMessage();
 

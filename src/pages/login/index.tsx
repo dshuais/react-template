@@ -3,7 +3,7 @@
 * @Author: dushuai
 * @Date: 2024-03-29 16:13:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-08 10:04:55
+ * @LastEditTime: 2024-04-08 10:35:23
 * @description: login
 */
 import { useNavigate, useSearchParams } from "react-router-dom"
@@ -25,8 +25,8 @@ function Login() {
   const { theme } = useSnapshot(setStore)
 
   function handleLogin() {
-    appActions.setToken('test-tokentokentokentokentokentokentokentokentokentokentokentokentoken')
     message.success('登陆成功')
+    appActions.setToken('test-tokentokentokentokentokentokentokentokentokentokentokentokentoken')
     navigate('/', { replace: true })
   }
 
