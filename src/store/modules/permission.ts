@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-07 11:54:24
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-07 17:29:17
+ * @LastEditTime: 2024-04-08 09:45:09
  * @description: 权限
  */
 import { devtools } from "valtio/utils"
@@ -121,5 +121,7 @@ const components = Object.keys(modules).reduce<Record<string, any>>((prev, cur) 
  * @returns 
  */
 function createComponent(name: string) {
+  console.log(modules);
+
   return lazy(components[`${name}/index.tsx`])
 }

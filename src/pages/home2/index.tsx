@@ -3,19 +3,17 @@
 * @Author: dushuai
 * @Date: 2024-03-29 16:13:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-07 18:39:04
+ * @LastEditTime: 2024-04-08 10:05:15
 * @description: login
 */
-import { useLocation, useNavigate, useNavigation, useParams, useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { useSnapshot } from 'valtio'
 import { setStore, setActions, appActions } from '@/store'
 import { message } from 'antd'
 
 function Login() {
   const [params, setParams] = useSearchParams()
-  const p = useParams()
-  const location = useLocation()
-  const navigation = useNavigation()
+
   const navtivate = useNavigate()
 
   function handleSet() {
