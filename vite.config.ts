@@ -71,9 +71,11 @@ export default defineConfig(({ mode }) => {
       return `${y}${m}${d}${h}${mm}${ss}`
     }
     const dirName: string = formatDate()
-    publicPath = `${env.VITE_APP_RESOURCE_URL}${dirName}`
+    // publicPath = `${env.VITE_APP_RESOURCE_URL}${dirName}`
+    publicPath = `${env.VITE_APP_RESOURCE_URL}`
     if (isProd) {
-      outputDir = `./dist/${dirName}`
+      // outputDir = `./dist/${dirName}`
+      outputDir = `./dist`
     }
   }
 
