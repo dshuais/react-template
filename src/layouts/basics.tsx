@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-07 10:25:43
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-08 10:37:26
+ * @LastEditTime: 2024-04-09 21:13:06
  * @description: BasicsLayout
  */
 
@@ -20,8 +20,6 @@ export default function BasicsLayout() {
   const { token } = useSnapshot(appStore)
 
   useEffect(() => {
-    console.log(token, 'token');
-
     if (!token) {
       navigate('/login', { replace: true })
       return

@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2023-03-14 17:53:45
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-08 14:17:41
+ * @LastEditTime: 2024-04-09 21:23:00
  * @description: axios
  */
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
@@ -149,3 +149,44 @@ export function get<T = any>(url: string, params?: object): Promise<Res.Response
   })
 }
 
+/**
+ * PUT请求
+ */
+export function put<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
+  return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
+    service
+      .put(url, params)
+      .then(
+        (response: AxiosResponse<Res.ResponseRes<T>>) => {
+          response && resolve(response.data)
+        },
+        (err: AxiosError) => {
+          reject(err)
+        }
+      )
+      .catch((error: AxiosError) => {
+        reject(error)
+      })
+  })
+}
+
+/**
+ * DELETE请求
+ */
+export function del<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
+  return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
+    service
+      .delete(url, { params })
+      .then(
+        (response: AxiosResponse<Res.ResponseRes<T>>) => {
+          response && resolve(response.data)
+        },
+        (err: AxiosError) => {
+          reject(err)
+        }
+      )
+      .catch((error: AxiosError) => {
+        reject(error)
+      })
+  })
+}

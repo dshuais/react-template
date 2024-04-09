@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-07 11:36:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-08 11:30:37
+ * @LastEditTime: 2024-04-09 21:12:55
  * @description: App 路由 鉴权组件
  */
 import { RouterProvider } from "react-router-dom";
@@ -19,12 +19,9 @@ export default function App() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    console.log('token变化了', token);
-
     if (token) {
       permisActions.GenerateRoutes()
-        .then(res => {
-          console.log(router.routes, res);
+        .then(() => {
           setVisible(true)
         })
     }
