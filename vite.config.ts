@@ -2,6 +2,8 @@ import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'path'
 import fs from 'fs'
+import svgr from 'vite-plugin-svgr'
+// import svgr from '@svgr/rollup'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -84,7 +86,8 @@ export default defineConfig(({ mode }) => {
     base: publicPath,
 
     plugins: [
-      react()
+      react(),
+      svgr()
     ],
 
     build: {

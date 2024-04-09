@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-09 21:27:35
+ * @LastEditTime: 2024-04-09 23:16:26
  * @description: Home
  */
 import { useState } from 'react'
@@ -14,6 +14,8 @@ import { useSnapshot } from 'valtio'
 import { appStore, appActions, setStore, setActions } from '@/store'
 import { Button, message } from 'antd'
 import { DialogContext } from '@/hooks/context'
+import LoadingIcon from '@/assets/icons/three-dots.svg?react'
+import ViteLogo from '@/assets/react.svg?react'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -51,6 +53,8 @@ function App() {
         <button onClick={() => setActions.setTheme('dark')}>
           theme
         </button>
+        <LoadingIcon />
+        <ViteLogo />
         <div className="flex justify-center items-center">
           <a href="https://vitejs.dev" target="_blank">
             <img src={viteLogo} className={styles.logo} alt="Vite logo" />
