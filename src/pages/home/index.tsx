@@ -2,10 +2,10 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-11 14:24:47
+ * @LastEditTime: 2024-04-11 16:38:29
  * @description: Home
  */
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -18,6 +18,7 @@ import LoadingIcon from '@/assets/icons/loading.svg?react'
 import loadingIcon from '@/assets/icons/loading.svg'
 import ViteLogo from '@/assets/react.svg?react'
 import RobotIcon from '@/assets/icons/robot.svg?react'
+import Test from '@/components/Test'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,6 +38,10 @@ function App() {
   // const actions = useSnapshot(appActions)
 
   const [messageApi, contextHolder] = message.useMessage();
+
+  useEffect(() => {
+    console.log('父组件useEffect')
+  }, [])
 
   return (
     <DialogContext.Provider value={{}}>
@@ -81,6 +86,12 @@ function App() {
           <button onClick={handleJumpLogin}>
             jumpLogin
           </button>
+
+          {/* {
+            count % 2 === 0 ? <Test /> : <div>没有子组件</div>
+          } */}
+          <Test />
+
           <p>
             Edit <code>src/App.tsx</code> and save to test HMR
           </p>

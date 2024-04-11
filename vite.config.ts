@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'path'
 import fs from 'fs'
 import svgr from 'vite-plugin-svgr'
-// import svgr from '@svgr/rollup'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -95,14 +94,14 @@ export default defineConfig(({ mode }) => {
       assetsDir: 'assets', // 指定生成静态文件目录 默认assets
       assetsInlineLimit: 1024 * 10, // 小于此阈值的导入或引用资源将内联为 base64 编码 默认4096
       cssCodeSplit: true, // 启用 CSS 代码拆分 默认true
-      minify: 'esbuild',
-      terserOptions: {
-        compress: {
-          // 生产环境时移除console.log调试代码 生产环境时移除
-          drop_console: isHideLog,
-          drop_debugger: isHideLog
-        }
-      },
+      minify: 'esbuild', // 混淆器，terser构建后文件体积更小  // 默认esbuild 它比 terser 快 20-40 倍，压缩率只差 1%-2%
+      // terserOptions: {
+      //   compress: {
+      //     // 生产环境时移除console.log调试代码 生产环境时移除
+      //     drop_console: isHideLog,
+      //     drop_debugger: isHideLog
+      //   }
+      // },
       rollupOptions: {
         output: { // 对打包的静态资源做处理
           chunkFileNames: 'assets/js/[name]-[hash].js',
