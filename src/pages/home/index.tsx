@@ -2,10 +2,10 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-11 16:38:29
+ * @LastEditTime: 2024-04-11 17:04:58
  * @description: Home
  */
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -39,9 +39,7 @@ function App() {
 
   const [messageApi, contextHolder] = message.useMessage();
 
-  useEffect(() => {
-    console.log('父组件useEffect')
-  }, [])
+  console.log('父组件');
 
   return (
     <DialogContext.Provider value={{}}>
@@ -85,6 +83,9 @@ function App() {
 
           <button onClick={handleJumpLogin}>
             jumpLogin
+          </button>
+          <button onClick={() => navigate('/home2')}>
+            jumpHome2
           </button>
 
           {/* {

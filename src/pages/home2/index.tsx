@@ -3,13 +3,12 @@
 * @Author: dushuai
 * @Date: 2024-03-29 16:13:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-08 10:05:15
+ * @LastEditTime: 2024-04-11 17:03:27
 * @description: login
 */
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { useSnapshot } from 'valtio'
-import { setStore, setActions, appActions } from '@/store'
-import { message } from 'antd'
+import { setStore, setActions } from '@/store'
 
 function Login() {
   const [params, setParams] = useSearchParams()
@@ -24,14 +23,9 @@ function Login() {
 
   const { theme } = useSnapshot(setStore)
 
-  function handleLogin() {
-    appActions.setToken('test-token')
-    message.success('登陆成功')
-    navtivate('/', { replace: true })
-  }
-
   return (
     <>
+      我是home2
       login query a =  {params.get('a')}
 
       <div>theme: {theme}</div>
@@ -45,10 +39,6 @@ function Login() {
       <br />
       <button onClick={() => navtivate('/')}>
         返回
-      </button>
-
-      <button onClick={handleLogin}>
-        登陆
       </button>
     </>
   )
