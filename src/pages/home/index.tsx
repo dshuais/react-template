@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-09 23:16:26
+ * @LastEditTime: 2024-04-11 10:21:11
  * @description: Home
  */
 import { useState } from 'react'
@@ -15,7 +15,9 @@ import { appStore, appActions, setStore, setActions } from '@/store'
 import { Button, message } from 'antd'
 import { DialogContext } from '@/hooks/context'
 import LoadingIcon from '@/assets/icons/three-dots.svg?react'
+import loadingIcon from '@/assets/icons/three-dots.svg'
 import ViteLogo from '@/assets/react.svg?react'
+import RobotIcon from '@/assets/icons/robot.svg?react'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -53,8 +55,10 @@ function App() {
         <button onClick={() => setActions.setTheme('dark')}>
           theme
         </button>
-        <LoadingIcon />
+        <LoadingIcon className='fill-[#1d93ab] w-16 h-16' />
         <ViteLogo />
+        <RobotIcon className='fill-[#1d93ab] w-16 h-16' />
+        <img src={loadingIcon} alt="" />
         <div className="flex justify-center items-center">
           <a href="https://vitejs.dev" target="_blank">
             <img src={viteLogo} className={styles.logo} alt="Vite logo" />
