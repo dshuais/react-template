@@ -2,10 +2,10 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-11 11:09:45
+ * @LastEditTime: 2024-04-11 14:24:47
  * @description: Home
  */
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -21,6 +21,10 @@ import RobotIcon from '@/assets/icons/robot.svg?react'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const countMemo = useMemo(() => {
+    return count * 5 - count
+  }, [count])
 
   const navigate = useNavigate()
 
@@ -70,7 +74,8 @@ function App() {
         <h1>Vite + React</h1>
         <div className={styles.card}>
           <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
+            count is {count}<br />
+            countMemo is {countMemo}
           </button>
 
           <button onClick={handleJumpLogin}>
