@@ -2,12 +2,11 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:17:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-07 18:39:57
+ * @LastEditTime: 2024-04-11 11:11:15
  * @description: 路由表
  */
 import { ComponentType, lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
-import { Route } from '@/store/modules/permission'
 
 const BasicsLayout = lazy(() => import('@/layouts/basics'))
 // const Home = lazy(() => import('@/pages/home'))
@@ -58,27 +57,3 @@ const routes: RouteObject[] = [
 ]
 
 export default routes
-
-/**
- * 动态配置路由
- */
-export const dynamicRoutes: Route[] = [
-  {
-    id: 'Home',
-    path: '/',
-    component: 'home',
-    handle: {
-      title: '首页',
-      roles: ['admin', 'other']
-    }
-  },
-  {
-    id: 'Home2',
-    path: '/home2',
-    component: 'home2',
-    handle: {
-      title: '首页',
-      roles: ['admin', 'other']
-    }
-  }
-]

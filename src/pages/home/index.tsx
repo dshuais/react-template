@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-11 10:35:36
+ * @LastEditTime: 2024-04-11 11:09:45
  * @description: Home
  */
 import { useState } from 'react'
@@ -13,7 +13,7 @@ import styles from './index.module.css'
 import { useSnapshot } from 'valtio'
 import { appStore, appActions, setStore, setActions } from '@/store'
 import { Button, message } from 'antd'
-import { DialogContext } from '@/hooks/context'
+import { DialogContext } from '@/common'
 import LoadingIcon from '@/assets/icons/loading.svg?react'
 import loadingIcon from '@/assets/icons/loading.svg'
 import ViteLogo from '@/assets/react.svg?react'

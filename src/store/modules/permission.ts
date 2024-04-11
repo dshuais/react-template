@@ -2,11 +2,11 @@
  * @Author: dushuai
  * @Date: 2024-04-07 11:54:24
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-09 21:14:21
+ * @LastEditTime: 2024-04-11 11:13:38
  * @description: 权限
  */
 import { devtools } from "valtio/utils"
-import { dynamicRoutes } from "@/router/routes"
+import { dynamicRoutes } from "@/common"
 import { proxy } from "valtio"
 import { deepClone } from "@/utils"
 import { lazy } from "react"
@@ -21,27 +21,14 @@ type Permission = {
   routes: Array<Route>
 }
 
-export type Route = {
-  id: string
-  path: string
-  component: string
-  redirect?: string
-  children?: Array<Route>
-  handle?: Handle
-}
-
-type Handle = {
-  title?: string
-  icon?: string
-  roles?: string[] // 'admin' | 'other'
-}
+export type Route = App.Route
 
 type AgnosticDataRouteObject = {
   id: string
   path: string
   Component: any
   children?: AgnosticDataRouteObject[]
-  handle?: Handle
+  handle?: App.Handle
 }
 
 export const permisStore: Permission = proxy({
