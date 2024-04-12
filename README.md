@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# React-Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个自用的 React 项目模板，主要为了减少每次项目开发前的重复操作。主要采用 Vite + React + TypeScript + SWC + Tailwind css + Valtio + Ant Design 等常用技术栈和常用库构建。
 
-Currently, two official plugins are available:
+> 预览地址：[https://react-template-ds.netlify.app](https://react-template-ds.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 主要功能
 
-## Expanding the ESLint configuration
+- [x] 动态路由
+- [x] 完善的 Axios
+- [x] 区分环境变量
+- [x] Valtio 状态管理仓库
+- [x] Svg To Component
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 安装
 
-- Configure the top-level `parserOptions` property like this:
+```bash
+pnpm create keepdesign
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# 选择 react-pc-template
+
+pnpm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 运行
+
+```bash
+pnpm dev
+```
+
+## 打包
+
+```bash
+pnpm sit
+
+# or
+
+pnpm prod
+```
+
+`
+
+## 技术栈
+
+主要采用 Vite + React + TypeScript + SWC + Tailwind css + Valtio + Ant Design 等常用技术栈和常用库构建
+
+- [Vite](https://vitejs.cn/vite3-cn/)
+- [React](https://react.dev/)
+- [Tailwindcss](https://www.tailwindcss.cn/)
+- [Valtio](https://valtio.pmnd.rs/)
+- [Ant Design](https://ant.design/index-cn/)
