@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-11 17:04:58
+ * @LastEditTime: 2024-04-17 10:18:35
  * @description: Home
  */
 import { useMemo, useState } from 'react'
@@ -19,6 +19,7 @@ import loadingIcon from '@/assets/icons/loading.svg'
 import ViteLogo from '@/assets/react.svg?react'
 import RobotIcon from '@/assets/icons/robot.svg?react'
 import Test from '@/components/Test'
+import { Icon } from '@iconify-icon/react'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -62,6 +63,13 @@ function App() {
         <button onClick={() => setActions.setTheme('dark')}>
           theme
         </button>
+        <div className='flex justify-center items-center my-4 border border-gray-400 w-fit px-2 rounded-md'>
+          <Icon icon="ph:gear-fill" className="text-xl mr-1" />
+          <Icon icon="mdi:github" className="text-xl mr-1" />
+          <Icon icon="simple-icons:juejin" className="text-xl mr-1" />
+          <Icon icon="mingcute:wechat-line" className="text-xl mr-1" />
+          设置
+        </div>
         <LoadingIcon className='fill-[#1d93ab] w-16 h-16' />
         <ViteLogo />
         <RobotIcon className='fill-[#1d93ab] w-16 h-16' />
