@@ -3,7 +3,7 @@
 * @Author: dushuai
 * @Date: 2024-03-29 16:13:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-28 15:08:26
+ * @LastEditTime: 2024-04-28 16:31:08
 * @description: login
 */
 import { useNavigate, useSearchParams } from "react-router-dom"
@@ -20,7 +20,9 @@ function Login() {
     })
   }
 
-  const { theme, SET_THEME } = useSettings()
+  // const { theme, SET_THEME } = useSettings()
+  const theme = useSettings(state => state.theme)
+  const SET_THEME = useSettings(state => state.SET_THEME)
 
   return (
     <>

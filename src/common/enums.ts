@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-13 23:20:11
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-26 12:05:11
+ * @LastEditTime: 2024-04-28 15:47:41
  * @Description: 枚举文件
  */
 
@@ -23,5 +23,6 @@ export enum Pages {
  */
 export enum StoreKey {
   APP = `app-store-${APP_KEY}`,
-  SETTINGS = `settings-store-${APP_KEY}`
+  SETTINGS = `settings-store-${APP_KEY}`,
+  PERMISSION = `permission-store-${APP_KEY}`,
 }

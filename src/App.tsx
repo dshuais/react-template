@@ -2,14 +2,14 @@
  * @Author: dushuai
  * @Date: 2024-04-07 11:36:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-28 15:27:33
+ * @LastEditTime: 2024-04-28 16:20:47
  * @description: App 路由 鉴权组件
  */
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import { Suspense, useEffect, useState } from "react";
 import Loading from "@/components/Loading";
-import { useAppStore, permisActions } from "./store";
+import { useAppStore, usePermission } from "./store";
 
 export default function App() {
 
@@ -17,9 +17,11 @@ export default function App() {
 
   const [visible, setVisible] = useState(false)
 
+  const GenerateRoutes = usePermission(state => state.GenerateRoutes)
+
   useEffect(() => {
     if (token) {
-      permisActions.GenerateRoutes()
+      GenerateRoutes()
         .then(() => {
           setVisible(true)
         })
