@@ -3,12 +3,11 @@
 * @Author: dushuai
 * @Date: 2024-03-29 16:13:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-08 10:35:23
+ * @LastEditTime: 2024-04-28 15:08:59
 * @description: login
 */
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { useSnapshot } from 'valtio'
-import { setStore, setActions, appActions } from '@/store'
+import { useSettings, appActions } from '@/store'
 import { message } from 'antd'
 
 function Login() {
@@ -22,7 +21,7 @@ function Login() {
     })
   }
 
-  const { theme } = useSnapshot(setStore)
+  const { theme, SET_THEME } = useSettings()
 
   function handleLogin() {
     message.success('登陆成功')
@@ -35,7 +34,7 @@ function Login() {
       login query a =  {params.get('a')}
 
       <div>theme: {theme}</div>
-      <button onClick={() => setActions.setTheme('light')}>
+      <button onClick={() => SET_THEME('light')}>
         theme
       </button>
 

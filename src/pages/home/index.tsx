@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-17 10:18:35
+ * @LastEditTime: 2024-04-28 15:07:46
  * @description: Home
  */
 import { useMemo, useState } from 'react'
@@ -11,7 +11,7 @@ import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
 import styles from './index.module.css'
 import { useSnapshot } from 'valtio'
-import { appStore, appActions, setStore, setActions } from '@/store'
+import { appStore, appActions, useSettings } from '@/store'
 import { Button, message } from 'antd'
 import { DialogContext } from '@/common'
 import LoadingIcon from '@/assets/icons/loading.svg?react'
@@ -35,7 +35,8 @@ function App() {
   }
 
   const { token } = useSnapshot(appStore)
-  const { theme } = useSnapshot(setStore)
+  // const { theme } = useSnapshot(setStore)
+  const { theme, SET_THEME } = useSettings()
   // const actions = useSnapshot(appActions)
 
   const [messageApi, contextHolder] = message.useMessage();
@@ -60,7 +61,7 @@ function App() {
           重置
         </Button>
         <div>theme: {theme}</div>
-        <button onClick={() => setActions.setTheme('dark')}>
+        <button onClick={() => SET_THEME('dark')}>
           theme
         </button>
         <div className='flex justify-center items-center my-4 border border-gray-400 w-fit px-2 rounded-md'>
