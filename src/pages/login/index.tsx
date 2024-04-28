@@ -3,11 +3,11 @@
 * @Author: dushuai
 * @Date: 2024-03-29 16:13:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-28 15:08:59
+ * @LastEditTime: 2024-04-28 15:32:13
 * @description: login
 */
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { useSettings, appActions } from '@/store'
+import { useSettings, useAppStore } from '@/store'
 import { message } from 'antd'
 
 function Login() {
@@ -23,9 +23,11 @@ function Login() {
 
   const { theme, SET_THEME } = useSettings()
 
+  const SET_TOKEN = useAppStore(state => state.SET_TOKEN)
+
   function handleLogin() {
     message.success('登陆成功')
-    appActions.setToken('test-tokentokentokentokentokentokentokentokentokentokentokentokentoken')
+    SET_TOKEN('test-tokentokentokentokentokentokentokentokentokentokentokentokentoken')
     navigate('/', { replace: true })
   }
 

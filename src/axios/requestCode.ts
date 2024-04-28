@@ -2,11 +2,11 @@
  * @Author: dushuai
  * @Date: 2023-04-03 14:33:53
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-03 14:43:21
+ * @LastEditTime: 2024-04-28 15:31:21
  * @description: 统一处理报错
  */
 import type { AxiosResponse } from "axios";
-import { appActions } from '@/store'
+import { useAppStore } from '@/store'
 import { message } from 'antd'
 import router from '@/router'
 
@@ -28,7 +28,7 @@ export default (response: AxiosResponse): void => {
   } else if (code === 401 && !noTokenUrl.includes(url)) { // 401未登录
     console.log('登陆失败err:>> ', url)
     // 清除token
-    appActions.resetToken()
+    useAppStore.getState().REMOVE_TOKEN()
     router.navigate('/login', { replace: true })
 
   } else if (to404Url.includes(code)) { // 跳降级页

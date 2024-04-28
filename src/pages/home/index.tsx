@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-28 15:07:46
+ * @LastEditTime: 2024-04-28 15:30:35
  * @description: Home
  */
 import { useMemo, useState } from 'react'
@@ -10,8 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import reactLogo from '../../assets/react.svg'
 import viteLogo from '/vite.svg'
 import styles from './index.module.css'
-import { useSnapshot } from 'valtio'
-import { appStore, appActions, useSettings } from '@/store'
+import { useAppStore, useSettings } from '@/store'
 import { Button, message } from 'antd'
 import { DialogContext } from '@/common'
 import LoadingIcon from '@/assets/icons/loading.svg?react'
@@ -34,7 +33,7 @@ function App() {
     navigate('/login', { state: { b: 666 } })
   }
 
-  const { token } = useSnapshot(appStore)
+  const { token, SET_TOKEN, RESET: RESET_TOKEN } = useAppStore()
   // const { theme } = useSnapshot(setStore)
   const { theme, SET_THEME } = useSettings()
   // const actions = useSnapshot(appActions)
@@ -54,10 +53,10 @@ function App() {
           message
         </Button>
         <div>token: {token}</div>
-        <Button type="primary" onClick={() => appActions.setToken(token + '123')}>
+        <Button type="primary" onClick={() => SET_TOKEN(token + 'new')}>
           修改token
         </Button>
-        <Button type="primary" danger onClick={() => appActions.reset()}>
+        <Button type="primary" danger onClick={() => RESET_TOKEN()}>
           重置
         </Button>
         <div>theme: {theme}</div>

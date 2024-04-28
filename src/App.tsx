@@ -2,19 +2,18 @@
  * @Author: dushuai
  * @Date: 2024-04-07 11:36:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-09 21:12:55
+ * @LastEditTime: 2024-04-28 15:27:33
  * @description: App 路由 鉴权组件
  */
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import { Suspense, useEffect, useState } from "react";
 import Loading from "@/components/Loading";
-import { appStore, permisActions } from "./store";
-import { useSnapshot } from "valtio";
+import { useAppStore, permisActions } from "./store";
 
 export default function App() {
 
-  const { token } = useSnapshot(appStore)
+  const token = useAppStore(state => state.token)
 
   const [visible, setVisible] = useState(false)
 
