@@ -1,8 +1,8 @@
 /*
  * @Author: dushuai
  * @Date: 2024-04-11 11:10:56
- * @LastEditors: dushuai
- * @LastEditTime: 2024-04-11 11:15:32
+ * @LastEditors: dushuais 1137896420@qq.com
+ * @LastEditTime: 2024-08-08 21:29:04
  * @description: 动态路由相关
  */
 
@@ -28,4 +28,4 @@ export const dynamicRoutes: App.Route[] = [
       roles: ['admin', 'other']
     }
   }
-]
+];

@@ -6,23 +6,23 @@
  * @LastEditTime: 2024-04-28 16:31:08
 * @description: login
 */
-import { useNavigate, useSearchParams } from "react-router-dom"
-import { useSettings } from '@/store'
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSettings } from '@/store';
 
 function Login() {
-  const [params, setParams] = useSearchParams()
+  const [params, setParams] = useSearchParams();
 
-  const navtivate = useNavigate()
+  const navtivate = useNavigate();
 
   function handleSet() {
     setParams({
       a: 'b'
-    })
+    });
   }
 
   // const { theme, SET_THEME } = useSettings()
-  const theme = useSettings(state => state.theme)
-  const SET_THEME = useSettings(state => state.SET_THEME)
+  const theme = useSettings(state => state.theme);
+  const SET_THEME = useSettings(state => state.SET_THEME);
 
   return (
     <>
@@ -42,7 +42,7 @@ function Login() {
         返回
       </button>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

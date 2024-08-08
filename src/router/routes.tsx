@@ -5,10 +5,10 @@
  * @LastEditTime: 2024-04-13 23:32:36
  * @description: 路由表
  */
-import { ComponentType, lazy } from 'react'
-import { RouteObject } from 'react-router-dom'
+import { ComponentType, lazy } from 'react';
+import { RouteObject } from 'react-router-dom';
 
-const BasicsLayout = lazy(() => import('@/layouts/basics'))
+const BasicsLayout = lazy(() => import('@/layouts/basics'));
 // const Home = lazy(() => import('@/pages/home'))
 // const ErrorElement = lazy(() => import('@/pages/error'))
 
@@ -19,7 +19,7 @@ export type Module = {
 /**
  * 所有pages下页面文件
  */
-export const modules = import.meta.glob('@/pages/*/index.tsx') as unknown as Module
+export const modules = import.meta.glob('@/pages/*/index.tsx') as unknown as Module;
 
 /**
  * 路由表
@@ -59,15 +59,15 @@ const routes: RouteObject[] = [
     // element: <ErrorElement />,
     // errorElement: <ErrorElement />
   }
-]
+];
 
-export default routes
+export default routes;
 
 /**
  * 获取页面路径
- * @param name 
- * @returns 
+ * @param name
+ * @returns
  */
 export function getPath(name: string) {
-  return `/src/pages/${name}/index.tsx`
+  return `/src/pages/${name}/index.tsx`;
 }

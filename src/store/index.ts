@@ -5,6 +5,6 @@
  * @LastEditTime: 2024-04-07 17:32:48
  * @description: store
  */
-export * from './modules/app'
-export * from './modules/settings'
-export * from './modules/permission'
+export * from './modules/app';
+export * from './modules/settings';
+export * from './modules/permission';

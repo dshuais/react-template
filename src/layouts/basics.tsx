@@ -6,30 +6,30 @@
  * @description: BasicsLayout
  */
 
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { useAppStore } from "@/store";
-import { useEffect } from "react";
-import Loading from "@/components/Loading";
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useAppStore } from '@/store';
+import { useEffect } from 'react';
+import Loading from '@/components/Loading';
 
 export default function BasicsLayout() {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const token = useAppStore(state => state.token)
+  const token = useAppStore(state => state.token);
 
   useEffect(() => {
-    if (!token) {
-      navigate('/login', { replace: true })
-      return
+    if(!token) {
+      navigate('/login', { replace: true });
+      return;
     }
-  }, [pathname, token])
+  }, [pathname, token]);
 
-  if (!token) {
-    return <Loading />
+  if(!token) {
+    return <Loading />;
   }
 
   return (
     <Outlet />
-  )
+  );
 }

@@ -5,19 +5,19 @@
  * @LastEditTime: 2024-04-09 11:59:47
  * @description: 存放所有context
  */
-import { createContext } from "react";
+import { createContext } from 'react';
 
 export type ShowModalType = 'add' | 'edit'
 
 type DialogContextType = {
   /**
    * 打开新增对话弹窗
-   * @param {ShowModalType} type 
+   * @param {ShowModalType} type
    */
   showModal?: (type: ShowModalType) => void
   /**
    * 删除对话
-   * @param {number} id 
+   * @param {number} id
    */
   removeDialog?: (id: number) => void
 }
@@ -28,4 +28,4 @@ type DialogContextType = {
 export const DialogContext = createContext<DialogContextType>({
   showModal: () => { },
   removeDialog: () => { }
-})
+});

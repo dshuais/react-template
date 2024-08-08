@@ -6,7 +6,7 @@
  * @Description: 枚举文件
  */
 
-export const APP_KEY = 'react-template'
+export const APP_KEY = 'react-template';
 
 /**
  * 路由
