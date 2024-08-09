@@ -7,6 +7,7 @@
 * @description: login
 */
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
 import { useSettings } from '@/store';
 
 function Login() {

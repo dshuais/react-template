@@ -12,8 +12,10 @@
     "prod": "tsc && vite build"
   },
   "dependencies": {
+    "ahooks": "^3.8.0",
     "antd": "^5.16.0",
     "axios": "^1.6.8",
+    "classnames": "^2.5.1",
     "nprogress": "^0.2.0",
     "qs": "^6.12.0",
     "react": "^18.2.0",

@@ -7,8 +7,9 @@
 * @description: login
 */
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSettings, useAppStore } from '@/store';
 import { message } from 'antd';
+
+import { useSettings, useAppStore } from '@/store';
 
 function Login() {
   const [params, setParams] = useSearchParams();

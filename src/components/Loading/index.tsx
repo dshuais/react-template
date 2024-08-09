@@ -5,12 +5,18 @@
  * @LastEditTime: 2024-04-13 23:11:27
  * @description: loading 组件
  */
+import { useEffect, useMemo } from 'react';
+import { useSetState } from 'ahooks';
 import NProgress from 'nprogress';
-import { useEffect } from 'react';
+
 import 'nprogress/nprogress.css';
 import styles from './index.module.css';
 
 export default function Loading() {
+
+  const [state] = useSetState({
+    type: TYPE.TWO
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,13 +29,21 @@ export default function Loading() {
     };
   }, []);
 
+  const Component = useMemo(() => {
+    return state.type === TYPE.ONE ? LoadingOne : LoadingTwo;
+  }, [state.type]);
+
   return (
-    <LoadingTwo />
+    <Component />
   );
 }
 
+const TYPE = {
+  ONE: 'one',
+  TWO: 'two'
+};
+
 // 规则循环旋转
-// @ts-expect-error
 function LoadingOne() {
   return (
     <div className={styles.loading}>

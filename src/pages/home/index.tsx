@@ -7,18 +7,22 @@
  */
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import reactLogo from '../../assets/react.svg';
-import viteLogo from '/vite.svg';
-import styles from './index.module.css';
-import { useAppStore, useSettings } from '@/store';
+import { Icon } from '@iconify-icon/react';
 import { Button, message } from 'antd';
-import { DialogContext } from '@/common';
-import LoadingIcon from '@/assets/icons/loading.svg?react';
-import loadingIcon from '@/assets/icons/loading.svg';
+import classNames from 'classnames';
+
+import Test from '@/components/Test';
 import ViteLogo from '@/assets/react.svg?react';
 import RobotIcon from '@/assets/icons/robot.svg?react';
-import Test from '@/components/Test';
-import { Icon } from '@iconify-icon/react';
+import LoadingIcon from '@/assets/icons/loading.svg?react';
+
+import loadingIcon from '@/assets/icons/loading.svg';
+import reactLogo from '../../assets/react.svg';
+import viteLogo from '/vite.svg';
+import { useAppStore, useSettings } from '@/store';
+import { DialogContext } from '@/common';
+
+import styles from './index.module.css';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -57,13 +61,13 @@ function App() {
           message
         </Button>
         <div>token: {token}</div>
-        <Button type="primary" onClick={() => SET_TOKEN(token + 'new')}>
+        <Button type="primary" onClick={() => SET_TOKEN('1234')}>
           修改token
         </Button>
         <Button type="primary" danger onClick={() => RESET_TOKEN()}>
           重置
         </Button>
-        <div>theme: {theme}</div>
+        <div className={classNames('text-pink-300', { 'text-2xl': token === '1234', 'text-3xl': token !== '1234' })}>theme: {theme}</div>
         <button onClick={() => SET_THEME('dark')}>
           theme
         </button>

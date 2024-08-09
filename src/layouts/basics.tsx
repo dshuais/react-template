@@ -7,9 +7,11 @@
  */
 
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useAppStore } from '@/store';
 import { useEffect } from 'react';
+
 import Loading from '@/components/Loading';
+
+import { useAppStore } from '@/store';
 
 export default function BasicsLayout() {
 
