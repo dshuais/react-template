@@ -3,13 +3,13 @@
 * @Author: dushuai
 * @Date: 2024-03-29 16:13:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-28 15:32:13
+ * @LastEditTime: 2024-08-10 17:31:51
 * @description: login
 */
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { message } from 'antd';
 
-import { useSettings, useAppStore } from '@/store';
+import { useSettings, useAppStore, useSelector } from '@/store';
 
 function Login() {
   const [params, setParams] = useSearchParams();
@@ -22,7 +22,7 @@ function Login() {
     });
   }
 
-  const { theme, SET_THEME } = useSettings();
+  const { theme, SET_THEME } = useSettings(useSelector(['theme', 'SET_THEME']));
 
   const SET_TOKEN = useAppStore(state => state.SET_TOKEN);
 

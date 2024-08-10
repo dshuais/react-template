@@ -1,8 +1,8 @@
 /*
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
- * @LastEditors: dushuais 1137896420@qq.com
- * @LastEditTime: 2024-08-08 21:30:06
+ * @LastEditors: dushuai
+ * @LastEditTime: 2024-08-10 17:31:19
  * @description: Home
  */
 import { useMemo, useState } from 'react';
@@ -19,7 +19,7 @@ import LoadingIcon from '@/assets/icons/loading.svg?react';
 import loadingIcon from '@/assets/icons/loading.svg';
 import reactLogo from '../../assets/react.svg';
 import viteLogo from '/vite.svg';
-import { useAppStore, useSettings } from '@/store';
+import { useAppStore, useSelector, useSettings } from '@/store';
 import { DialogContext } from '@/common';
 
 import styles from './index.module.css';
@@ -37,10 +37,8 @@ function App() {
     navigate('/login', { state: { b: 666 }});
   }
 
-  const { token, SET_TOKEN, RESET: RESET_TOKEN } = useAppStore();
-  // const { theme } = useSnapshot(setStore)
-  const { theme, SET_THEME } = useSettings();
-  // const actions = useSnapshot(appActions)
+  const { token, SET_TOKEN, RESET: RESET_TOKEN } = useAppStore(useSelector(['token', 'RESET', 'SET_TOKEN']));
+  const { theme, SET_THEME } = useSettings(useSelector(['theme', 'SET_THEME']));
 
   const [messageApi, contextHolder] = message.useMessage();
 

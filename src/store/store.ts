@@ -2,11 +2,11 @@
  * @Author: dushuai
  * @Date: 2024-04-18 12:28:06
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-28 16:24:05
+ * @LastEditTime: 2024-08-10 17:14:02
  * @description: 创建自定义store
  */
 import { StoreKey } from '@/common';
-import { create } from 'zustand';
+import { StoreApi, UseBoundStore, create } from 'zustand';
 import { PersistOptions, combine, devtools, persist } from 'zustand/middleware';
 
 type SetStoreState<T> = (
@@ -26,7 +26,9 @@ export type MakeUpdater<T> = {
   RESET: () => void
 }
 
-export type Methods<T, M> = (set: SetStoreState<T>, get: () => M & T & MakeUpdater<T>) => M
+type Store<S extends StoreApi<unknown>> = UseBoundStore<S>
+
+export type Methods<T, M> = (set: SetStoreState<T>, get: () => M & T & MakeUpdater<T>, store: Store<any>) => M
 
 /**
  * 创建store
@@ -54,20 +56,25 @@ export function createCustomStore<T extends object, M>(
 
   type Set = Partial<MakeState & T>
 
+  type Update =
+  | State
+  | Partial<State>
+  | ((state: State) => State | Partial<State>);
+
   return create(devtools(
     persist(
       combine(
         newStore,
 
-        (set, get) => ({
-          ...methods(set, get as Get),
+        (set, get, store) => ({
+          ...methods(set, get as Get, store),
 
           /**
-             * 一个通用set的方法 可用于偷懒
-             * @param data
-             */
-          SET_STATE: (data: STATE<State>) => {
-            set({ [data.key]: data.val } as Set);
+           * 一个通用set的方法 可用于偷懒
+           * @param data
+           */
+          SET_STATE: (data: Update) => {
+            set(data);
           },
 
           /**
