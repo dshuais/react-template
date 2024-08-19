@@ -3,16 +3,16 @@
 * @Author: dushuai
 * @Date: 2024-03-29 16:13:37
  * @LastEditors: dushuai
- * @LastEditTime: 2024-08-10 17:31:51
+ * @LastEditTime: 2024-08-19 21:42:49
 * @description: login
 */
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { message } from 'antd';
+import { useNavigate, useSearchParams, useSubmit } from 'react-router-dom';
 
-import { useSettings, useAppStore, useSelector } from '@/store';
+import { useSettings, useSelector } from '@/store';
 
 function Login() {
   const [params, setParams] = useSearchParams();
+  const sumbit = useSubmit();
 
   const navigate = useNavigate();
 
@@ -24,12 +24,11 @@ function Login() {
 
   const { theme, SET_THEME } = useSettings(useSelector(['theme', 'SET_THEME']));
 
-  const SET_TOKEN = useAppStore(state => state.SET_TOKEN);
-
   function handleLogin() {
-    message.success('登陆成功');
-    SET_TOKEN('test-tokentokentokentokentokentokentokentokentokentokentokentokentoken');
-    navigate('/', { replace: true });
+    // SET_TOKEN('test-tokentokentokentokentokentokentokentokentokentokentokentokentoken');
+    // navigate('/', { replace: true });
+    const token = 'test-tokentokentokentokentokentokentokentokentokentokentokentokentoken';
+    sumbit({ token, redirectTo: params.get('from') || '/' }, { method: 'post', replace: true });
   }
 
   return (

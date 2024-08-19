@@ -2,11 +2,11 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:10:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-08-10 17:31:19
+ * @LastEditTime: 2024-08-19 21:44:35
  * @description: Home
  */
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useFetcher, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify-icon/react';
 import { Button, message } from 'antd';
 import classNames from 'classnames';
@@ -32,17 +32,20 @@ function App() {
   }, [count]);
 
   const navigate = useNavigate();
+  const fetcher = useFetcher();
 
   function handleJumpLogin() {
     navigate('/login', { state: { b: 666 }});
   }
 
-  const { token, SET_TOKEN, RESET: RESET_TOKEN } = useAppStore(useSelector(['token', 'RESET', 'SET_TOKEN']));
+  const { token, SET_TOKEN } = useAppStore(useSelector(['token', 'RESET', 'SET_TOKEN']));
   const { theme, SET_THEME } = useSettings(useSelector(['theme', 'SET_THEME']));
 
   const [messageApi, contextHolder] = message.useMessage();
 
-  console.log('父组件');
+  function handleLogout() {
+    fetcher.submit(null, { action: '/logout', method: 'post' });
+  }
 
   return (
     <DialogContext.Provider value={{}}>
@@ -62,7 +65,7 @@ function App() {
         <Button type="primary" onClick={() => SET_TOKEN('1234')}>
           修改token
         </Button>
-        <Button type="primary" danger onClick={() => RESET_TOKEN()}>
+        <Button type="primary" danger onClick={handleLogout}>
           重置
         </Button>
         <div className={classNames('text-pink-300', { 'text-2xl': token === '1234', 'text-3xl': token !== '1234' })}>theme: {theme}</div>

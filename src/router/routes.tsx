@@ -2,15 +2,18 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:17:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-13 23:32:36
+ * @LastEditTime: 2024-08-19 21:39:05
  * @description: 路由表
  */
 import { ComponentType, lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
+// eslint-disable-next-line react-refresh/only-export-components
 const BasicsLayout = lazy(() => import('@/layouts/basics'));
 // const Home = lazy(() => import('@/pages/home'))
 // const ErrorElement = lazy(() => import('@/pages/error'))
+
+import { LoginAction, LoginLoader, LogoutAction, ProtectedLoader, RootLoader } from '@/permission';
 
 export type Module = {
   [keys in string]: () => Promise<{ default: ComponentType<any>; }>
@@ -21,14 +24,39 @@ export type Module = {
  */
 export const modules = import.meta.glob('@/pages/*/index.tsx') as unknown as Module;
 
+const dynamicRoutes: RouteObject[] = [
+  {
+    id: 'Home',
+    index: true,
+    Component: lazy(modules[getPath('home')]),
+    handle: {
+      title: '首页',
+      roles: ['admin', 'other']
+    },
+    loader: ProtectedLoader
+  },
+  {
+    id: 'Home2',
+    path: '/home2',
+    Component: lazy(modules[getPath('home2')]),
+    handle: {
+      title: '首页',
+      roles: ['admin', 'other']
+    },
+    loader: ProtectedLoader
+  }
+];
+
 /**
  * 路由表
  */
 const routes: RouteObject[] = [
   {
+    id: 'root',
     path: '/',
     Component: BasicsLayout,
-    children: []
+    children: [...dynamicRoutes],
+    loader: RootLoader
     // element: <Home />,
     // errorElement: <ErrorElement />,
     // 使用嵌套路由需要在 父页面元素内加上 <Outlet /> 组件
@@ -46,18 +74,17 @@ const routes: RouteObject[] = [
   },
   {
     path: '/login',
-    // async lazy() {
-    //   let { default: Login } = await import('@/pages/login')
-    //   return { Component: Login }
-    // }
-    // Component: lazy(() => import('@/pages/login'))
+    loader: LoginLoader,
+    action: LoginAction,
     Component: lazy(modules[getPath('login')])
   },
   {
     path: '*',
     Component: lazy(modules[getPath('error')])
-    // element: <ErrorElement />,
-    // errorElement: <ErrorElement />
+  },
+  {
+    path: '/logout',
+    action: LogoutAction
   }
 ];
 

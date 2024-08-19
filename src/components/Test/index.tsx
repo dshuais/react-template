@@ -2,7 +2,7 @@
  * @Author: dushuai
  * @Date: 2024-04-11 16:27:35
  * @LastEditors: dushuai
- * @LastEditTime: 2024-04-11 17:04:45
+ * @LastEditTime: 2024-08-19 21:45:25
  * @description: 心平气和
  */
 
@@ -12,8 +12,6 @@ import { memo } from 'react';
  * mome 测试
  */
 export default memo(function Test(props: { count?: number }) {
-
-  console.log('子组件');
 
   return (
     <div>
