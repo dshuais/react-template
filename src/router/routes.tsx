@@ -2,18 +2,17 @@
  * @Author: dushuai
  * @Date: 2024-03-29 16:17:20
  * @LastEditors: dushuai
- * @LastEditTime: 2024-08-19 21:39:05
+ * @LastEditTime: 2024-08-19 22:09:31
  * @description: 路由表
  */
 import { ComponentType, lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
+import { LoginAction, LoginLoader, LogoutAction, ProtectedLoader, RootLoader } from '@/permission';
+import UserLayout from '@/layouts/userLayout';
+
 // eslint-disable-next-line react-refresh/only-export-components
 const BasicsLayout = lazy(() => import('@/layouts/basics'));
-// const Home = lazy(() => import('@/pages/home'))
-// const ErrorElement = lazy(() => import('@/pages/error'))
-
-import { LoginAction, LoginLoader, LogoutAction, ProtectedLoader, RootLoader } from '@/permission';
 
 export type Module = {
   [keys in string]: () => Promise<{ default: ComponentType<any>; }>
@@ -55,22 +54,22 @@ const routes: RouteObject[] = [
     id: 'root',
     path: '/',
     Component: BasicsLayout,
-    children: [...dynamicRoutes],
-    loader: RootLoader
-    // element: <Home />,
-    // errorElement: <ErrorElement />,
-    // 使用嵌套路由需要在 父页面元素内加上 <Outlet /> 组件
-    // children: [
-    //   {
-    //     id: 'Home',
-    //     path: '/',
-    //     // element: <Home />
-    //     Component: lazy(modules['/src/pages/home/index.tsx'])
-    //   }
-    // ],
-    // handle: {
-    //   title: 'Home'
-    // }
+    loader: RootLoader,
+    children: [...dynamicRoutes]
+  },
+  {
+    path: '/user',
+    Component: UserLayout,
+    children: [
+      {
+        index: true,
+        Component: lazy(modules[getPath('home2')]),
+        handle: {
+          title: '首页',
+          roles: ['admin', 'other']
+        }
+      }
+    ]
   },
   {
     path: '/login',

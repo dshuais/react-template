@@ -2,10 +2,10 @@
  * @Author: dushuai
  * @Date: 2024-08-19 21:19:46
  * @LastEditors: dushuai
- * @LastEditTime: 2024-08-19 22:02:38
+ * @LastEditTime: 2024-08-19 22:10:28
  * @description: permission 权限控制的最佳使用
  *
- * 用法：/login、/logout、/(id: 'root') 为一级路由，所有功能路由均存在于/下
+ * 用法：/login、/logout、/(id: 'root') 为一级路由，所有功能路由均存在于/下 或者新建一级路由
  *
  * 受保护：需要登录后才能访问的路由 使用loader: ProtectedLoader
  * 登录：外部调用登录接口成功后 调用用 useSubmit() 方法
