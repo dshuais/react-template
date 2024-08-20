@@ -120,15 +120,16 @@ function filterToRouter(routes: Route[]) {
  * @param routes
  * @returns
  */
-function filterAsyncRouter(routes: Route[]) {
+function filterAsyncRouter(routes: Route[], parentPath?: string) {
   const newRoutes = deepClone<Route[]>(routes);
 
   return newRoutes.map(route => {
+    const parent = parentPath || route.parent;
 
     const r: RouteObject & { parent: string } = {
       index: route.index,
       id: route.id,
-      path: joinPath(route.path, route.parent),
+      path: joinPath(route.path, parent),
       Component: createComponent(route.component),
       // children: route.children && route.children.length ? filterAsyncRouter(route.children) : void 0,
       handle: route.handle,
@@ -140,7 +141,7 @@ function filterAsyncRouter(routes: Route[]) {
     }
 
     if(route.children && route.children.length) {
-      r.children = filterAsyncRouter(route.children);
+      r.children = filterAsyncRouter(route.children, r.path);
     }
 
     return r;
@@ -166,5 +167,5 @@ function createComponent(name: string) {
  */
 function joinPath(path?: string, parent?: string) {
   if(!path) return void 0;
-  return `${parent || '/'}/${path.replace(/^\/+/, '')}`;
+  return `${parent || ''}/${path.replace(/^\/+/, '')}`;
 }

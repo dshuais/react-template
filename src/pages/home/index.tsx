@@ -6,7 +6,7 @@
  * @description: Home
  */
 import { useMemo, useState } from 'react';
-import { useFetcher, useNavigate } from 'react-router-dom';
+import { Outlet, useFetcher, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify-icon/react';
 import { Button, message } from 'antd';
 import classNames from 'classnames';
@@ -117,6 +117,11 @@ function App() {
         <p className={styles['read-the-docs']}>
           Click on the Vite and React logos to learn more
         </p>
+
+        <div>
+          子页面
+          <Outlet />
+        </div>
       </div>
     </DialogContext.Provider>
   );

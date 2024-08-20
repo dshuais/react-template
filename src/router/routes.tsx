@@ -17,10 +17,15 @@ export type Module = {
   [keys in string]: () => Promise<{ default: ComponentType<any>; }>
 }
 
-/**
- * 所有pages下页面文件
- */
-export const modules = import.meta.glob('@/pages/*/index.tsx') as unknown as Module;
+/** 所有pages下页面文件 */
+const pagesModules = import.meta.glob('@/pages/*/index.tsx') as unknown as Module;
+/** 所有pages\*\router下嵌套页面文件 */
+const nestModules = import.meta.glob('@/pages/*/router/*/index.tsx') as unknown as Module;
+/** 所有页面文件 */
+export const modules: Module = {
+  ...pagesModules,
+  ...nestModules
+};
 
 /**
  * 路由表

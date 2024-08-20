@@ -6,7 +6,7 @@
  * @LastEditTime: 2024-04-28 16:31:08
 * @description: login
 */
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useSettings } from '@/store';
 
@@ -42,6 +42,11 @@ function Login() {
       <button onClick={() => navtivate('/')}>
         返回
       </button>
+
+      <div>
+        子页面
+        <Outlet />
+      </div>
     </>
   );
 }
