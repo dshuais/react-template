@@ -6,20 +6,23 @@
  * @description: App 路由
  */
 import { RouterProvider } from 'react-router-dom';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import Loading from '@/components/Loading';
 
-import router from './router';
+import r, { generateRouter } from './router';
 import { useSelector } from './store';
 import { usePermission } from './store/modules/permission';
 
 export default function App() {
 
+  const [router, setRouter] = useState(r);
   const { GenerateRoutes } = usePermission(useSelector(['GenerateRoutes']));
 
   useEffect(() => {
-    GenerateRoutes();
+    GenerateRoutes().then(r => {
+      setRouter(generateRouter(r));
+    });
   }, []);
 
   return (

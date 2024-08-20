@@ -2,9 +2,8 @@ import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 import { createJSONStorage } from 'zustand/middleware';
 
-import router from '@/router';
 import { deepClone } from '@/utils';
-import { getPath, modules } from '@/router/routes';
+import routes, { getPath, modules } from '@/router/routes';
 import { ProtectedLoader } from '@/permission';
 import { dynamicRoutes, StoreKey } from '@/common';
 import { MakeState, createCustomStore } from '../store';
@@ -16,15 +15,10 @@ type Store = {
 type Actions = {
   SET_ROUTER: (routes: Array<Route>) => void
   REMOVE_ROUTER: () => void
-  GenerateRoutes: () => Promise<string>
+  GenerateRoutes: () => Promise<RouteObject[]>
 }
 
 export type Route = App.Route
-
-/**
- * 路由表内的路由
- */
-const routes = router.routes;
 
 /**
  * 当前store版本
@@ -60,26 +54,21 @@ export const usePermission = createCustomStore<Store, Actions>(
      */
     GenerateRoutes: () => {
       return new Promise((resolve) => {
-        // dynamicRoutes 可 替换为接口获取
+        // dynamicRoutes 可替换为接口获取
         get().SET_ROUTER(dynamicRoutes);
         const r = filterToRouter(dynamicRoutes);
 
-        if(r.size === 0) return resolve('动态路由数据为空:>> ');
+        if(r.size === 0) return resolve([]);
 
         Array.from(r.keys()).map(k => {
           const index = routes.findIndex(item => item.path === k);
-          /**
-           * routes[index].children 所需要的 AgnosticDataRouteObject[] 类型在@remix-run包内
-           * @remix-run包是router的依赖包 所以导入版本更新后会有问题
-           * 这里直接使用any[]
-           */
           const pre = routes[index].children || [],
             children = r.get(k)?.filter(item => pre.findIndex(i => i.path === item.path) === -1) || [];
 
-          routes[index].children = [...pre, ...children as any[]];
+          routes[index].children = [...pre, ...children];
         });
 
-        resolve('动态路由创建成功:>> ');
+        resolve(routes);
       });
     }
 
@@ -158,19 +147,6 @@ function filterAsyncRouter(routes: Route[]) {
 
   });
 }
-
-/**
- * 所有pages下页面文件
- */
-// const modules = import.meta.glob('@/pages/*/index.tsx') as unknown as Module
-
-/**
- * 所有pages下页面文件 去除了目录前缀
- */
-// const components = Object.keys(modules).reduce<Record<string, any>>((prev, cur) => {
-//   prev[cur.replace('/src/pages/', '')] = modules[cur]
-//   return prev
-// }, {})
 
 /**
  * 获取动态页面
