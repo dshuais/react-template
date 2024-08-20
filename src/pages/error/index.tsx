@@ -9,7 +9,7 @@ import { Link, useRouteError } from 'react-router-dom';
 
 export default function ErrorPage() {
   const error: any = useRouteError();
-  console.error(error);
+  console.error(error || 'Page not found!');
 
   return (
     <div id="error-page" className="container mx-auto text-center">

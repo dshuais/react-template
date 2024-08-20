@@ -7,12 +7,14 @@
  */
 
 /**
- * 动态配置路由
+ * 动态配置路由 ------ 这里是前端自己的动态路由
+ *
+ *
  */
 export const dynamicRoutes: App.Route[] = [
   {
     id: 'Home',
-    path: '/',
+    index: true,
     component: 'home',
     handle: {
       title: '首页',
@@ -21,10 +23,31 @@ export const dynamicRoutes: App.Route[] = [
   },
   {
     id: 'Home2',
-    path: '/home2',
+    path: 'home2',
     component: 'home2',
     handle: {
       title: '首页',
+      roles: ['admin', 'other']
+    },
+    protected: false
+  },
+  {
+    id: 'User1',
+    index: true,
+    component: 'home2',
+    parent: '/user',
+    handle: {
+      title: 'user',
+      roles: ['admin', 'other']
+    }
+  },
+  {
+    id: 'User3',
+    path: 'user3',
+    component: 'home',
+    parent: '/user',
+    handle: {
+      title: 'user',
       roles: ['admin', 'other']
     }
   }

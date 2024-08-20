@@ -55,8 +55,8 @@ function App() {
           type="primary"
           onClick={() => {
             messageApi.success('success');
-            console.log(contextHolder);
           // message.open({ content: 'success' })
+            // message.success('success');
           }}
         >
           message

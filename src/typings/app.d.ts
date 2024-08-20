@@ -7,13 +7,13 @@
  */
 
 interface Window {
-  mozRequestAnimationFrame: Function,
+  mozRequestAnimationFrame: (cb: unknown) => number,
 
-  webkitRequestAnimationFrame: Function,
+  webkitRequestAnimationFrame: (cb: unknown) => number,
 
-  msRequestAnimationFrame: Function,
+  msRequestAnimationFrame: (cb: unknown) => number,
 
-  mozCancelAnimationFrame: Function
+  mozCancelAnimationFrame: (cb: unknown) => number
 }
 
 /**
@@ -25,12 +25,15 @@ declare namespace App {
    * 路由类型
    */
   type Route = {
+    index?: boolean
     id: string
-    path: string
+    path?: string
     component: string
     redirect?: string
     children?: Array<Route>
     handle?: Handle
+    parent?: string
+    protected?: boolean
   }
 
   type Handle = {

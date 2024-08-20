@@ -51,6 +51,11 @@ function Login() {
       <button onClick={handleLogin}>
         登陆
       </button>
+      <br />
+      <button onClick={() => navigate('/user')}>user</button><br />
+      <button onClick={() => navigate('/user/user2')}>user2</button><br />
+      <button onClick={() => navigate('/user/user3')}>user3</button><br />
+      <button onClick={() => navigate('/home2')}>home2</button><br />
     </>
   );
 }

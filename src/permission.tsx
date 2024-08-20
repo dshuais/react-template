@@ -15,8 +15,8 @@
  *
  * 所有逻辑均可根据实际情况进行修改
  */
-import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 import { message } from 'antd';
+import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 
 import { useAppStore } from '@/store';
 
@@ -25,10 +25,18 @@ export type AuthStatus = {
 }
 
 /**
- * root根目录的Loader 根据需要使用
+ * root根目录的Loader 根据需要设置使用
  */
-export function RootLoader(): AuthStatus {
-  return { token: useAppStore.getState().token };
+export function RootLoader({ request: _request }: LoaderFunctionArgs) {
+  const token = useAppStore.getState().token;
+
+  // if(!token) {
+  //   const params = new URLSearchParams();
+  //   params.set('from', new URL(_request.url).pathname);
+  //   return redirect('/login?' + params.toString());
+  // }
+
+  return { token };
   //  Get our logged in user, if they exist, from the root route loader data
   //  const { token } = useRouteLoaderData('root') as AuthStatus;
 }

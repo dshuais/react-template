@@ -6,13 +6,21 @@
  * @description: App 路由
  */
 import { RouterProvider } from 'react-router-dom';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 
 import Loading from '@/components/Loading';
 
 import router from './router';
+import { useSelector } from './store';
+import { usePermission } from './store/modules/permission';
 
 export default function App() {
+
+  const { GenerateRoutes } = usePermission(useSelector(['GenerateRoutes']));
+
+  useEffect(() => {
+    GenerateRoutes();
+  }, []);
 
   return (
     <Suspense fallback={<Loading />}>

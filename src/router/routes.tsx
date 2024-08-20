@@ -8,8 +8,7 @@
 import { ComponentType, lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
-import { LoginAction, LoginLoader, LogoutAction, ProtectedLoader, RootLoader } from '@/permission';
-import UserLayout from '@/layouts/userLayout';
+import { LoginAction, LoginLoader, LogoutAction, RootLoader } from '@/permission';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const BasicsLayout = lazy(() => import('@/layouts/basics'));
@@ -23,29 +22,6 @@ export type Module = {
  */
 export const modules = import.meta.glob('@/pages/*/index.tsx') as unknown as Module;
 
-const dynamicRoutes: RouteObject[] = [
-  {
-    id: 'Home',
-    index: true,
-    Component: lazy(modules[getPath('home')]),
-    handle: {
-      title: '首页',
-      roles: ['admin', 'other']
-    },
-    loader: ProtectedLoader
-  },
-  {
-    id: 'Home2',
-    path: '/home2',
-    Component: lazy(modules[getPath('home2')]),
-    handle: {
-      title: '首页',
-      roles: ['admin', 'other']
-    },
-    loader: ProtectedLoader
-  }
-];
-
 /**
  * 路由表
  */
@@ -55,19 +31,16 @@ const routes: RouteObject[] = [
     path: '/',
     Component: BasicsLayout,
     loader: RootLoader,
-    children: [...dynamicRoutes]
+    children: [] // ...dynamicRoutes
   },
   {
     path: '/user',
-    Component: UserLayout,
+    Component: lazy(() => import('@/layouts/userLayout')),
+    loader: RootLoader,
     children: [
       {
-        index: true,
-        Component: lazy(modules[getPath('home2')]),
-        handle: {
-          title: '首页',
-          roles: ['admin', 'other']
-        }
+        path: '/user/user2',
+        Component: lazy(modules[getPath('home')])
       }
     ]
   },
@@ -78,12 +51,14 @@ const routes: RouteObject[] = [
     Component: lazy(modules[getPath('login')])
   },
   {
-    path: '*',
+    // logout路由只用来退出登录，不展示页面
+    path: '/logout',
+    action: LogoutAction,
     Component: lazy(modules[getPath('error')])
   },
   {
-    path: '/logout',
-    action: LogoutAction
+    path: '*',
+    Component: lazy(modules[getPath('error')])
   }
 ];
 
