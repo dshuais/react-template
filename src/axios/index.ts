@@ -88,7 +88,7 @@ service.interceptors.response.use(
  * 基础的请求
 */
 /** POST表单格式 */
-export function post<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
+export function postForm<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
   return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
     service
       .post(url, qs.stringify(params), {
@@ -110,8 +110,8 @@ export function post<T = any>(url: string, params?: object): Promise<Res.Respons
   });
 }
 
-/** POST JSON格式 */
-export function postJSON<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
+/** POST */
+export function post<T = any>(url: string, params?: object): Promise<Res.ResponseRes<T>> {
   return new Promise<Res.ResponseRes<T>>((resolve, reject) => {
     service
       .post(url, params)

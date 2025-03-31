@@ -5,8 +5,7 @@
  * @LastEditTime: 2024-04-28 15:47:41
  * @Description: 枚举文件
  */
-
-export const APP_KEY = 'react-template';
+import { APP_KEY } from '@/config';
 
 /**
  * 路由

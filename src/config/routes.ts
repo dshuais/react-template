@@ -30,53 +30,22 @@ export const dynamicRoutes: App.Route[] = [
       title: '首页',
       roles: ['admin', 'other']
     }
-  },
-  {
-    id: 'Home2',
-    path: 'home2',
-    component: 'home2',
-    handle: {
-      title: '首页',
-      roles: ['admin', 'other']
-    },
-    protected: false,
-    children: [
-      {
-        id: 'Home3',
-        path: 'home3',
-        component: 'home/router/home3'
-      }
-    ]
-  },
-  {
-    id: 'User1',
-    index: true,
-    component: 'home2',
-    parent: '/user',
-    handle: {
-      title: 'user',
-      roles: ['admin', 'other']
-    }
-  },
-  {
-    id: 'User3',
-    path: 'user3',
-    component: 'home',
-    parent: '/user',
-    handle: {
-      title: 'user',
-      roles: ['admin', 'other']
-    }
-  },
-  {
-    id: 'User4',
-    path: 'user4',
-    component: 'home/router/home3',
-    parent: '/user',
-    handle: {
-      title: 'user',
-      roles: ['admin', 'other']
-    },
-    protected: false
   }
+  // {
+  //   id: 'Home2',
+  //   path: 'home2',
+  //   component: 'home2',
+  //   handle: {
+  //     title: '首页',
+  //     roles: ['admin', 'other']
+  //   },
+  //   protected: false,
+  //   children: [
+  //     {
+  //       id: 'Home3',
+  //       path: 'home3',
+  //       component: 'home/router/home3'
+  //     }
+  //   ]
+  // }
 ];

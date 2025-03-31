@@ -41,10 +41,11 @@ module.exports = {
     }
   },
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true }
-    ],
+    'react-refresh/only-export-components': 'off',
+    // 'react-refresh/only-export-components': [
+    //   'warn',
+    //   { allowConstantExport: true }
+    // ],
     // 屏蔽import/no-commonjs提示
     'import/no-commonjs': 'off',
 

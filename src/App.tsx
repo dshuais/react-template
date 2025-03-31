@@ -11,8 +11,8 @@ import { Suspense, useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
 
 import r, { generateRouter } from './router';
-import { useSelector } from './store';
 import { usePermission } from './store/modules/permission';
+import { useSelector } from '@turbotools/react';
 
 export default function App() {
 
