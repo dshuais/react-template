@@ -262,3 +262,14 @@ export function deepClone<T>(source: T): T {
 
   return targetObj;
 }
+
+export const formatFileSize = (num: number) => {
+  if(!num) return num;
+  const units = ['', 'K', 'M', 'G', 'T', 'P'];
+  let index = 0;
+  while(num >= 1024 && index < units.length) {
+    num = num / 1024;
+    index++;
+  }
+  return `${num.toFixed(2)}${units[index]}B`;
+};
